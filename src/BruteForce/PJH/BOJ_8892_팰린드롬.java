@@ -1,4 +1,3 @@
-package algorithm2023.aug.day02;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class BOJ8892 {
+public class BOJ_8892_팰린드롬 {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());

@@ -1,10 +1,6 @@
-package algorithm2023.aug.day03;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 public class BOJ_1062_가르침 {
 	static int N, K, max;

@@ -1,11 +1,9 @@
-package algorithm2023.aug.day02;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class BOJ14697 {
+public class BOJ_14697_방 배정하기 {
 	static int N;
 	static int[] room = new int[3];
 	static boolean dp[];
@@ -18,7 +16,7 @@ public class BOJ14697 {
 		N = Integer.parseInt(st.nextToken());
 		dp = new boolean[N+1];
 		dp[0] = true;
-		for(int i =0;i<3;i++) {
+		for(int i =0;i<3;i++) {z
 			for(int j = room[i] ;j<=N;j++) {
 				if(dp[j-room[i]]) {
 					dp[j] = true;
