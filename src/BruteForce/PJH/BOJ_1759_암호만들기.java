@@ -1,5 +1,3 @@
-package algorithm2023.aug.day03;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
