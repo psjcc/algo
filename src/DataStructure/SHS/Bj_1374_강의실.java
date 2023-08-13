@@ -3,7 +3,10 @@ package backj;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Bj_1374_강의실 {
@@ -13,36 +16,43 @@ public class Bj_1374_강의실 {
 		StringTokenizer st;
 		int N = Integer.parseInt(br.readLine());
 		
-		int[] start_time = new int[N];
-		int[] end_time = new int[N];
-		boolean[] the_end = new boolean[N];
+		List<Time> times = new ArrayList<>();
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			st.nextToken();
-			start_time[i] = Integer.parseInt(st.nextToken());
-			end_time[i] = Integer.parseInt(st.nextToken());
-		}
-		
-		Arrays.sort(start_time);
-		Arrays.sort(end_time);
-		int cnt = 0;
-		int max = 0;
-		int end_idx = 0;
-		for(int i = 0; i < N; i++) {
-			int now = start_time[i];
-			cnt++;
+			times.add(new Time(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken())));
 			
-			for(int j = end_idx; j < i; j++) {
-				if(now >= end_time[j] && !the_end[j]) {
-					the_end[j] = true;
-					cnt--;
-					end_idx++;
-				}
+		}
+		Collections.sort(times);
+		
+		PriorityQueue<Integer> q = new PriorityQueue<>();
+		
+		int max = 1;
+		
+		for(int i = 0; i < N ; i++) {
+			while(!q.isEmpty()&&q.peek()<=times.get(i).start) {
+				q.poll();
 			}
-			if(cnt > max) max = cnt;
+			q.offer(times.get(i).end);
+			max = Math.max(max, q.size());
 		}
 		System.out.println(max);
-		
 	}
 
+}
+class Time implements Comparable<Time>{
+	int num;
+	int start;
+	int end;
+	
+	@Override
+	public int compareTo(Time t) {
+		if(this.start == t.start) return this.end - t.end;
+		return this.start - t.start;
+	}
+	
+	public Time(int num, int start, int end) {
+		this.num = num;
+		this.start = start;
+		this.end = end;
+	}
 }
