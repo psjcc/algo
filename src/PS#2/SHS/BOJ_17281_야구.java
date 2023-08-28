@@ -57,3 +57,44 @@ public class BOJ_17281_야구 {
 			}
 		}
 	}
+	
+	static int letsplay(int[] arr) {
+		Deque<Integer> q = new ArrayDeque<>();
+		int temp = 0;
+		for(int i = 0; i < 9; i++) {
+			q.add(arr[i]);
+		}
+		
+		
+		for(int i = 0; i < N; i++) {
+			int out = 0;
+			while(out != 3) {
+				int now = q.poll();
+				if(score[i][now-1] == 0) out++;
+				else {
+					temp += hit(score[i][now-1]);
+				}
+				q.add(now);
+			}
+			for(int j = 0; j < 9; j++)
+				grd[j] = false;
+		}
+		return temp;
+	}
+	static int hit(int N) {
+		int temp = 0;
+		for(int i = 3; i > 0; i--) {
+			if(grd[i]) {
+				grd[i] = false;
+				grd[i+N] = true;
+			}
+		}
+		grd[N] = true;
+		for(int i = 4; i <9; i++) {
+			if(grd[i]) { temp++; grd[i] = false;}
+			
+		}
+		return temp;
+	}
+
+}
