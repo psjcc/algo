@@ -1,5 +1,3 @@
-package backj;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,35 +8,31 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
-public class BOJ_1976_여행가자 {
-	static boolean[][] graph;
+public class Main {
 	static int[] parent;
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		int N = Integer.parseInt(br.readLine());
 		int M = Integer.parseInt(br.readLine());
-		boolean visited[][] = new boolean[N][N]; 
 		parent = new int[N];
 		for(int i = 0; i<N; i++)
 			parent[i] = i;
-		graph = new boolean[N][N];
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for(int j = 0; j < N; j++) {
 				int x = Integer.parseInt(st.nextToken());
 				if(x == 1 ) {
 					union(i,j);
-					visited[i][j] = true;
 				}
 			}
 		}
 		
 		st = new StringTokenizer(br.readLine());
-		int temp = parent[Integer.parseInt(st.nextToken())-1];
+		int temp = find(Integer.parseInt(st.nextToken())-1);
 		boolean result = true;
 		for(int i = 0; i < M-1; i++) {
-			if(temp != parent[Integer.parseInt(st.nextToken())-1]) {
+			if(temp != find(Integer.parseInt(st.nextToken())-1)) {
                 result = false;
                 break;
             }
